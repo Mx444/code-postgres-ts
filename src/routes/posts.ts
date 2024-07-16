@@ -107,10 +107,10 @@ routerPosts.delete("/:id", async (req: Request, res: Response) => {
 
     const query = `DELETE FROM ${table} WHERE id = $1`;
     const condition = [id_post];
-    const result = await connect.query(query, condition);
+    await connect.query(query, condition);
     connect.release();
 
-    res.status(200).json({ message: "Post deleted successfully", deletedPost: result.rows[0] });
+    res.status(200).json({ message: "Post deleted successfully" });
   } catch (error) {
     handleError(res, 400, error);
   }
